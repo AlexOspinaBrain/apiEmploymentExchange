@@ -14,7 +14,7 @@ class UpdateUserAddRelationKindid extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('id_kindid')->references('id')->on('kindids');
+            $table->foreignId('kindId')->after('id')->references('id')->on('kindids');
         });
     }
 

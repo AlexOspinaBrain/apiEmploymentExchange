@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Kindid;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -15,6 +16,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'kindId' => Kindid::inRandomOrder()->value('id'),
+            'docId' => $this->faker->unique->word(),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
