@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('offers', [ApiController::class, 'getOffers']);
+Route::post('addUser', [ApiController::class, 'insertUser']);
+Route::post('addOffer', [ApiController::class, 'insertOffer']);
 
 Route::fallback(function () {
     return 'Invalid Enpoint';

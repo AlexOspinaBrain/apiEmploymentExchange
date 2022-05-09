@@ -48,4 +48,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Joboffer::class, 'user_offers', 'id_user', 'id_offer');
     }
+
+    public function kindid()
+    {
+        return $this->belongsTo(Kindid::class, 'kindId','id');
+        
+    }
 }
