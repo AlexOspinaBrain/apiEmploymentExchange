@@ -7,6 +7,35 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
+
+<h1>Api para una bolsa de empleos</h1>
+    
+</h2>Es una API desarrollada en Laravel.</h2>
+
+<p>Instalación</p>
+<p>Clonar el repositorio</p>
+
+<p>Crear una base de datos</p>
+
+<p>Despues puede hacer una copia del archivo .env.example con el nombre .env y en la seccion DB configurar el acceso a la base de datos creada</p>
+
+<p>Ahora debe ejecutar los siguientes comandos:</p>
+
+<p>
+composer install
+php artisan key:generate
+php artisan migrate --seed
+</p>
+<h3>Listo, la base de datos ya contendra información de prueba pre fabricada</h3>
+
+<p>Este sería un ejemplo http://alexdeploys.info/apiemploymentexchange/public/api/getOffers</p>
+
+
+
+
+Dudas con laravel??? revise lo siguiente :
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
