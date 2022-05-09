@@ -15,7 +15,6 @@ class JobofferFactory extends Factory
     public function definition()
     {
         return [
-            'idUser' => User::inRandomOrder()->value('id'),
             'status' => $this->faker->boolean(),
             'nameOffer' => $this->faker->jobTitle(),
         ];

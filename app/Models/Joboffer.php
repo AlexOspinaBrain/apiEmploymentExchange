@@ -15,4 +15,10 @@ class Joboffer extends Model
         'idUser',
 
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_offers', 'id_offer', 'id_user');
+    }
+
 }
