@@ -36,7 +36,7 @@
 
 <h2>Endpoints</h2>
 
-<h3>POST http://sudominio/public/api/addUser </h3>
+<h3>POST http://sudominio/public/api/adduser </h3>
 <p> Con este endpoint podemos crear usuario nuevos al sistema, asi; </p>
 <h5>
 JSON para insertar usuarios:
@@ -78,7 +78,7 @@ OJO:
 <br>
     <br>
 
-<h3>POST http://sudominio/public/api/addOffer </h3>
+<h3>POST http://sudominio/public/api/addoffer </h3>
 <p> Con este endpoint podemos loguearnos, retornara un token JWT para poder consumir los siguientes endpoints, así; </p>
 <h5>
 JSON para insertar usuarios:
@@ -98,7 +98,7 @@ JSON para insertar usuarios:
     <br>
 
     
-<h3>Acá lo puede ver en acción, http://alexdeploys.info/apiemploymentexchange/public/api/addUser</h3>
+<h3>Acá lo puede ver en acción, http://alexdeploys.info/api/adduser</h3>
 <h4>Este ejemplo esta desplegado en Google Cloud en una VM Ubuntu con PHP7.4 FCM, Nginx y una instancia MySQL</h4>
 
 <br>
