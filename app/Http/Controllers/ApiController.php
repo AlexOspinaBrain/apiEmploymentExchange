@@ -6,7 +6,6 @@ use Validator;
 use JWTAuth;
 use App\Models\Kindid;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -44,21 +43,32 @@ class ApiController extends Controller
 
     public function insertUser () {
         
+        $validator = Validator::make(request()->all(), [
+            'tipoId' => 'required|string|max:2|min:2',
+            'id' => 'required|string|min:3|max:12',
+            'nombre' => 'required|string|min:4|max:50',
+            'email' => 'required|email',
+            'password' => 'required|string|min:6|max:50',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
         $kindId = request()->input('tipoId') ?? '';
         $idUser = request()->input('id') ?? '';
         $name = request()->input('nombre') ?? '';
         $email = request()->input('email') ?? '';
+        $password = request()->input('password') ?? '';
 
         $setKindId = Kindid::where('short_name', '=', $kindId)->first();
 
         $user = User::create([
-            'kindId' => $setKindId->id,
+            'kindId' => $setKindId->id ?? 'CC',
             'docId' => $idUser,
             'name' => $name,
             'email' => $email,
-        
-            //$user->password = $this->password_generate(2,9,1);
-            'password' => bcrypt('Porahora'),
+            'password' => bcrypt($password),
         
         ]);
 
@@ -75,9 +85,9 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+    public function login()
     {
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make(request()->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
         ]);
@@ -109,11 +119,4 @@ class ApiController extends Controller
         ]);
     } 
 
-    public function password_generate($n, $l, $s) 
-    {
-        $numbers = '1234567890';
-        $letters = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
-        $special = '--!=!@@#++%';
-        return substr(str_shuffle($numbers), 0, $n).substr(str_shuffle($letters), 0, $l).substr(str_shuffle($special), 0, $s);
-    }
 }
