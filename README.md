@@ -13,40 +13,98 @@
     
 </h2>Es una API desarrollada en Laravel.</h2>
 
-<p>Instalación</p>
-<p>Clonar el repositorio</p>
+<h3>Instalación :</h3>
 
-<p>Crear una base de datos</p>
+<ul>
+<li>Clonar el repositorio</li>
 
-<p>Despues puede hacer una copia del archivo .env.example con el nombre .env y en la seccion DB configurar el acceso a la base de datos creada</p>
+<li>Crear una base de datos</li>
 
-<p>Ahora debe ejecutar los siguientes comandos:</p>
+<li>Despues puede hacer una copia del archivo .env.example con el nombre .env y en la seccion DB configurar el acceso a la base de datos creada</li>
 
-<p>
-composer install
-php artisan key:generate
-php artisan migrate --seed
-</p>
+<li>Ahora debe ejecutar los siguientes comandos: </li>
+
+<ul>
+<li><code>composer install</code></li>
+<li><code>php artisan key:generate</code></li>
+<li><code>php artisan migrate --seed</code></li>
+<li><code>php artisan jwt:secret</code></li>
+</ul>
+</ul>
+    
 <h3>Listo, la base de datos ya contendra información de prueba pre fabricada</h3>
 
-<p>Este sería un ejemplo http://alexdeploys.info/apiemploymentexchange/public/api/getOffers</p>
+<h2>Endpoints</h2>
 
-<h3>
+<h3>POST http://sudominio/public/api/addUser </h3>
+<p> Con este endpoint podemos crear usuario nuevos al sistema, asi; </p>
+<h5>
 JSON para insertar usuarios:
-</h3>
+</h5>
 <code>
 {
     "tipoId": "CC",
     "id": "800EE00",
     "nombre": "Omar Herrera",
-    "email": "algo@gmail.com",
+    "email": "algo1@gmail.com",
     "password": "Porahora"
 }
 </code>
+<br>
+    <br>
+    
+<h3>POST http://sudominio/public/api/login </h3>
+<p> Con este endpoint podemos loguearnos, retornara un token JWT para poder consumir los siguientes endpoints, así; </p>
+<h5>
+JSON para loguear usuarios:
+</h5>
+<code>
+{
+    "email": "algo1@gmail.com",
+    "password": "Porahora"
+}
+</code>
+<br>
+    <br>
 
+<h3>GET http://sudominio/public/api/offers </h3>
+<p> Con este endpoint podemos recuperar un JSON con los usuarios y las ofertas aplicadas por éste, así; </p>
+<h5>
+OJO:
+</h5>
+<code>
+<strong>Token valido bearer en el encabezado de la solicitud</strong>
+</code>
+<br>
+    <br>
 
+<h3>POST http://sudominio/public/api/addOffer </h3>
+<p> Con este endpoint podemos loguearnos, retornara un token JWT para poder consumir los siguientes endpoints, así; </p>
+<h5>
+JSON para insertar usuarios:
+</h5>
+<code>
+    <strong>Token valido bearer en el encabezado de la solicitud</strong>
+    
+{
+    "oferta": "Conductor",
+    "usuarios": [
+        "algo1@gmail.com", 
+        "algo@gmail.com"
+    ]
+}
+</code>
+<br>
+    <br>
 
-Dudas con laravel??? revise lo siguiente :
+    
+<h3>Acá lo puede ver en acción, http://alexdeploys.info/apiemploymentexchange/public/api/addUser</h3>
+<h4>Este ejemplo esta desplegado en Google Cloud en una VM Ubuntu con PHP7.4 FCM, Nginx y una instancia MySQL</h4>
+
+<br>
+    <br>
+
+<h3>Dudas con laravel? revise lo siguiente :</h3>
 
 ## About Laravel
 
