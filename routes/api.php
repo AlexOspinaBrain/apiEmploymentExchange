@@ -24,13 +24,13 @@ use App\Http\Controllers\JWTController;
  */
 Route::group(['middleware' => ['jwt.verify']], function() {    
     Route::get('/offers', [ApiController::class, 'getOffers']);
-    Route::post('/addOffer', [ApiController::class, 'insertOffer']);
+    Route::post('/addoffer', [ApiController::class, 'insertOffer']);
 });
 
 /**
  * Routes without jwt verify (don't need)
  */
-Route::post('/addUser', [ApiController::class, 'insertUser']);
+Route::post('/adduser', [ApiController::class, 'insertUser']);
 Route::post('/login', [ApiController::class, 'login']);
 
 /**
