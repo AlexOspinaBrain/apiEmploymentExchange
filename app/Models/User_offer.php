@@ -13,4 +13,9 @@ class User_offer extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'id_user',
+        'id_offer',
+    ];
+
 }

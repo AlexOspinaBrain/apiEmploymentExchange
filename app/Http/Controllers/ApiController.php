@@ -2,44 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Joboffer;
 use Validator;
 use JWTAuth;
 use App\Models\Kindid;
 use App\Models\User;
+use App\Models\User_offer;
 use Symfony\Component\HttpFoundation\Response;
 
 
 class ApiController extends Controller
 {
-
-    public function getOffers(){
-      
-        $userOffers = User::with('offers')->get();
-        
-        $arrayData = [];
-
-        foreach ($userOffers as $userOffer) {
-
-            $offers=[];
-
-            foreach ($userOffer->offers as $offer) {
-                $offers[]=[
-                    "oferta" => $offer->nameOffer,
-                    "estado" => $offer->status ? 'Activa' : 'Cerrada',
-                ];
-            }
-
-            $arrayData[] = [
-                "tipoId" => $userOffer->kindid->short_name,
-                "Id" => $userOffer->docId,
-                "nombre" => $userOffer->name,
-                "ofertasAplicadas" => $offers,
-            ];
-        }
-
-        return response()->json($arrayData);
-
-    }
 
     public function insertUser () {
         
@@ -118,5 +91,63 @@ class ApiController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     } 
+
+    public function getOffers(){
+      
+        $userOffers = User::with('offers')->get();
+        
+        $arrayData = [];
+
+        foreach ($userOffers as $userOffer) {
+
+            $offers=[];
+
+            foreach ($userOffer->offers as $offer) {
+                $offers[]=[
+                    "oferta" => $offer->nameOffer,
+                    "estado" => $offer->status ? 'Activa' : 'Cerrada',
+                ];
+            }
+
+            $arrayData[] = [
+                "tipoId" => $userOffer->kindid->short_name,
+                "Id" => $userOffer->docId,
+                "nombre" => $userOffer->name,
+                "ofertasAplicadas" => $offers,
+            ];
+        }
+
+        return response()->json($arrayData);
+
+    }
+
+    public function insertOffer() {
+        $validator = Validator::make(request()->all(), [
+            'oferta' => 'required|string|max:100|min:6',
+            'usuarios' => 'required|array|min:1',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $offer = Joboffer::create([
+            'nameOffer' => request()->input('oferta'),
+            'status' => true,
+        ]);
+
+        foreach (request()->input('usuarios') as $user){
+            $userToOffer = User::where('email','=',$user)->first();
+            User_offer::create([
+                'id_user' => $userToOffer->id,
+                'id_offer' => $offer->id,
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Offer created',
+            'offer' => $offer
+        ], Response::HTTP_OK);
+    }
 
 }
