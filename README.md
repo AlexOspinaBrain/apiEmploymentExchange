@@ -31,6 +31,16 @@ php artisan migrate --seed
 
 <p>Este sería un ejemplo http://alexdeploys.info/apiemploymentexchange/public/api/getOffers</p>
 
+<p>
+JSON para insertar usuarios:
+{
+    "tipoId": "CC",
+    "id": "800EE00",
+    "nombre": "Omar Herrera",
+    "email": "algo@gmail.com",
+    "password": "Porahora"
+}
+</p>
 
 
 

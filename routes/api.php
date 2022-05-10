@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\JWTController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,9 +19,13 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::get('offers', [ApiController::class, 'getOffers']);
-Route::post('addUser', [ApiController::class, 'insertUser']);
-Route::post('addOffer', [ApiController::class, 'insertOffer']);
+Route::group(['middleware' => ['jwt.verify']], function() {    
+    Route::get('/offers', [ApiController::class, 'getOffers']);
+    Route::post('/addOffer', [ApiController::class, 'insertOffer']);
+});
+
+Route::post('/addUser', [ApiController::class, 'insertUser']);
+Route::post('/login', [ApiController::class, 'login']);
 
 Route::fallback(function () {
     return 'Invalid Enpoint';
