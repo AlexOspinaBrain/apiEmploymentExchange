@@ -16,7 +16,7 @@ class KindidSeeder extends Seeder
     {
         DB::table('kindids')->insert([
             'short_name' => 'CC',
-            'name'=>'Cédula Ciudadania'
+            'name'=>'Cédula Ciudadanía'
         ]);
         DB::table('kindids')->insert([
             'short_name' => 'CE',

@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(KindidSeeder::class);
-        User::factory(10)->create();
-        Joboffer::factory(20)->create();
-        User_offer::factory(60)->create();
+        User::factory(20)->create();
+        Joboffer::factory(40)->create();
+        User_offer::factory(100)->create();
     }
 }

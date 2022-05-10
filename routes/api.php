@@ -19,14 +19,23 @@ use App\Http\Controllers\JWTController;
     return $request->user();
 });*/
 
+/**
+ * Middleware jwt verify
+ */
 Route::group(['middleware' => ['jwt.verify']], function() {    
     Route::get('/offers', [ApiController::class, 'getOffers']);
     Route::post('/addOffer', [ApiController::class, 'insertOffer']);
 });
 
+/**
+ * Routes without jwt verify (don't need)
+ */
 Route::post('/addUser', [ApiController::class, 'insertUser']);
 Route::post('/login', [ApiController::class, 'login']);
 
+/**
+ * Manage inexistent routes
+ */
 Route::fallback(function () {
     return 'Invalid Enpoint';
 });

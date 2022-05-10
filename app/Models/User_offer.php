@@ -9,10 +9,21 @@ class User_offer extends Model
 {
     use HasFactory;
 
+    /**
+     * Name of table
+     */
     protected $table = 'user_offers';
 
+    /**
+     * Without created_at or updated_at
+     */
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'id_user',
         'id_offer',

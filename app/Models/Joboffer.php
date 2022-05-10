@@ -9,6 +9,11 @@ class Joboffer extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'nameOffer',
         'status',
@@ -16,6 +21,9 @@ class Joboffer extends Model
 
     ];
 
+    /**
+     * Relation with users
+     */
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_offers', 'id_offer', 'id_user');

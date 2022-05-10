@@ -63,11 +63,18 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }   
 
+    
+    /**
+     * Relation with offers
+     */
     public function offers()
     {
         return $this->belongsToMany(Joboffer::class, 'user_offers', 'id_user', 'id_offer');
     }
 
+    /**
+     * Relation with Kind ides
+     */
     public function kindid()
     {
         return $this->belongsTo(Kindid::class, 'kindId','id');
